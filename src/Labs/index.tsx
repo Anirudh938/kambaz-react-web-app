@@ -7,12 +7,14 @@ export default function Labs() {
     return (
         <div>
             <h1>Labs</h1>
-            <TOC />
+            <h2>Anirudh Revalli</h2>
+            <TOC/>
             <Routes>
-                <Route path="/" element={<Navigate to="Lab1" />} />
-                <Route path="Lab1" element={<Lab1 />} />
-                <Route path="Lab2/*" element={<Lab2 />} />
-                <Route path="Lab3/*" element={<Lab3 />} />
+                <Route path="/" element={<Navigate to="Lab1"/>}/>
+                <Route path="Lab1" element={<Lab1/>}/>
+                <Route path="Lab2/*" element={<Lab2/>}/>
+                <Route path="Lab3/*" element={<Lab3/>}/>
             </Routes>
         </div>
-    );}
+    );
+}
