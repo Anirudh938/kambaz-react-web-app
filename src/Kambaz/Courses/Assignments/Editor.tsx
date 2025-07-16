@@ -1,6 +1,12 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Form, Button, Row, Col, Card } from "react-bootstrap";
+import {Link, useParams} from "react-router-dom";
+import * as db from "../../Database";
 
 export default function AssignmentEditor() {
+    const { cid, aid } = useParams();
+    const assignments = db.assignments;
+    const assignment : any = assignments.find((assignment) => assignment.course === cid && assignment._id === aid);
     return (
         <div id="wd-assignments-editor" className="p-3">
             <Form>
@@ -9,7 +15,7 @@ export default function AssignmentEditor() {
                         <Form.Control
                             id="wd-name"
                             type="text"
-                            defaultValue="A1"/>
+                            defaultValue={assignment?._id}/>
                 </Form.Group>
 
                 <Form.Group className="mb-3">
@@ -32,7 +38,7 @@ export default function AssignmentEditor() {
                         <Form.Control
                             id="wd-points"
                             type="number"
-                            defaultValue={100}/>
+                            defaultValue={assignment.points}/>
                     </Col>
                 </Form.Group>
 
@@ -128,7 +134,7 @@ export default function AssignmentEditor() {
                                     <Form.Control
                                         id="wd-due-date"
                                         type="datetime-local"
-                                        defaultValue="2024-05-13T23:59"/>
+                                        defaultValue={assignment.dueDate}/>
                                 </Form.Group>
 
                                 <Row>
@@ -138,7 +144,7 @@ export default function AssignmentEditor() {
                                             <Form.Control
                                                 id="wd-available-from"
                                                 type="datetime-local"
-                                                defaultValue="2024-05-06T12:00"/>
+                                                defaultValue={assignment.availableDate}/>
                                         </Form.Group>
                                     </Col>
                                     <Col md={6}>
@@ -159,10 +165,14 @@ export default function AssignmentEditor() {
 
                 <hr />
                 <div className="d-flex justify-content-end">
-                    <Button variant="secondary" className="me-2">
+                    <Button variant="secondary" className="me-2"
+                            as={Link as any}
+                            to={`/Kambaz/Courses/${cid}/Assignments`}>
                         Cancel
                     </Button>
-                    <Button variant="danger">
+                    <Button variant="danger"
+                            as={Link as any}
+                            to={`/Kambaz/Courses/${cid}/Assignments`}>
                         Save
                     </Button>
                 </div>

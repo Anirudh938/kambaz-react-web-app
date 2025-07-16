@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {Button, Col, Form, InputGroup, ListGroup, Row} from "react-bootstrap";
 import {FaPlus} from "react-icons/fa6";
 import {FaSearch} from "react-icons/fa";
@@ -7,8 +8,30 @@ import { MdAssignment } from 'react-icons/md';
 import AssignmentControls from "./AssignmentControls.tsx";
 import "./style.css";
 import { MdArrowDropDown } from "react-icons/md";
+import {useParams} from "react-router-dom";
+import * as db from "../../Database";
 
 export default function Assignments() {
+    const { cid } = useParams();
+    const assignments = db.assignments;
+    const formatDate = (dateString: string) => {
+        const date = new Date(dateString);
+        const month = date.toLocaleString('default', { month: 'long' });
+        const day = date.getDate();
+        const hours = date.getHours();
+        const minutes = date.getMinutes();
+
+        // Format time
+        const time = hours === 0 && minutes === 0 ? "12:00am" :
+            hours === 23 && minutes === 59 ? "11:59pm" :
+                date.toLocaleTimeString('en-US', {
+                    hour: 'numeric',
+                    minute: '2-digit',
+                    hour12: true
+                }).toLowerCase();
+
+        return `${month} ${day} at ${time}`;
+    };
     return (
         <div id="wd-assignments">
             <div id="wd-assignments-controls" className="d-flex justify-content-between align-items-center mb-4">
@@ -58,77 +81,33 @@ export default function Assignments() {
                         </div>
                     </div>
                     <ListGroup className="wd-lessons rounded-0">
-                        <ListGroup.Item className="wd-lesson p-3 ps-1">
-                            <Row className="align-items-center">
-                                <Col sm={1} className="d-flex justify-content-center">
-                                    <BsGripVertical className="me-2 fs-3" />
-                                    <MdAssignment className="text-success bg-white" size={24}/>
-                                </Col>
-                                <Col sm={9} className="d-flex justify-content-center">
-                                    <div className="d-flex flex-column">
-                                        <a href="#/Kambaz/Courses/1234/Assignments/123">
-                                            A1
-                                        </a>
-                                        <div className="wd-assignment-details">
-                                            <span className="wd-fg-color-red"> Multiple Modules </span> | <strong>Not
-                                            available until May 6 at 12:00am</strong> |
-                                            Due May 13 at 11:59pm | 100 pts
-                                        </div>
-                                    </div>
-                                </Col>
-                                <Col sm={2} className="d-flex justify-content-center">
-                                    <AssignmentControls/>
-                                </Col>
-                            </Row>
-                        </ListGroup.Item>
-                        <ListGroup.Item className="wd-lesson p-3 ps-1">
-                            <Row className="align-items-center">
-                            <Col sm={1} className="d-flex justify-content-center">
-                                    <BsGripVertical className="me-2 fs-3" />
-                                    <MdAssignment className="text-success bg-white" size={24}/>
-                                </Col>
-                                <Col sm={9} className="d-flex justify-content-center">
-                                    <div className="d-flex flex-column">
-                                        <a href="#/Kambaz/Courses/1234/Assignments/234"
-                                           className="wd-assignment-link">
-                                            A2
-                                        </a>
-                                        <div className="wd-assignment-details">
-                                            <span className="wd-fg-color-red">Multiple Modules</span> | <strong>Not
-                                            available until May 13 at 12:00am</strong> |
-                                            Due May 20 at 11:59pm | 100 pts
-                                        </div>
-                                    </div>
-                                </Col>
-                                <Col sm={2} className="d-flex justify-content-center">
-                                    <AssignmentControls/>
-                                </Col>
-                            </Row>
-                        </ListGroup.Item>
-                        <ListGroup.Item className="wd-lesson p-3 ps-1">
-                            <Row className="align-items-center">
-                                <Col sm={1} className="d-flex justify-content-center">
-                                    <BsGripVertical className="me-2 fs-3" />
-                                    <MdAssignment className="text-success bg-white" size={24}/>
-                                </Col>
-                                <Col sm={9} className="d-flex justify-content-center">
-                                    <div className="d-flex flex-column">
-                                        <a href="#/Kambaz/Courses/1234/Assignments/345"
-                                           className="wd-assignment-link">
-                                            A3
-                                        </a>
-                                        <div className="wd-assignment-details">
-                                            <span className="wd-fg-color-red"> Multiple Modules</span> | <strong>Not
-                                            available until May 20 at 12:00am</strong> |
-                                            Due May 27 at 11:59pm | 100 pts
-                                        </div>
-                                    </div>
-                                </Col>
-                                <Col sm={2} className="d-flex justify-content-center">
-                                    <AssignmentControls/>
-                                </Col>
-                            </Row>
-                        </ListGroup.Item>
+                        {assignments
+                            .filter((assignment : any) => assignment.course === cid)
+                            .map((assignment : any) => (
+                                <ListGroup.Item className="wd-lesson p-3 ps-1">
+                                    <Row className="align-items-center">
+                                        <Col sm={1} className="d-flex justify-content-center">
+                                            <BsGripVertical className="me-2 fs-3" />
+                                            <MdAssignment className="text-success bg-white" size={24}/>
+                                        </Col>
+                                        <Col sm={9} className="d-flex justify-content-center">
+                                            <div className="d-flex flex-column">
+                                                <a href={`#/Kambaz/Courses/${cid}/Assignments/${assignment._id}`}>
+                                                    {assignment._id}
+                                                </a>
+                                                <div className="wd-assignment-details">
+                                                    <span className="wd-fg-color-red"> Multiple Modules </span> | <strong>Not
+                                                    available until {formatDate(assignment.availableDate)}</strong> |
+                                                    Due {formatDate(assignment.dueDate)} | {assignment.points}
+                                                </div>
+                                            </div>
+                                        </Col>
+                                        <Col sm={2} className="d-flex justify-content-center">
+                                            <AssignmentControls/>
+                                        </Col>
+                                    </Row>
+                                </ListGroup.Item>
+                            ))}
                     </ListGroup>
                 </ListGroup.Item>
             </ListGroup>

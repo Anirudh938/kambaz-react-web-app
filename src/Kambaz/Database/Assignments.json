@@ -1,0 +1,74 @@
+[
+  {
+    "_id": "A101",
+    "title": "Propulsion Assignment",
+    "course": "RS101",
+    "points": 100,
+    "availableDate": "2024-05-13T00:00:00",
+    "dueDate": "2024-05-20T23:59:00"
+  },
+  {
+    "_id": "A102",
+    "title": "Combustion Analysis",
+    "course": "RS101",
+    "points": 75,
+    "availableDate": "2024-05-20T00:00:00",
+    "dueDate": "2024-05-27T23:59:00"
+  },
+  {
+    "_id": "A103",
+    "title": "Nozzle Design Project",
+    "course": "RS101",
+    "points": 150,
+    "availableDate": "2024-06-01T00:00:00",
+    "dueDate": "2024-06-15T23:59:00"
+  },
+  {
+    "_id": "A201",
+    "title": "Aerodynamics Quiz",
+    "course": "RS102",
+    "points": 50,
+    "availableDate": "2024-05-10T00:00:00",
+    "dueDate": "2024-05-17T23:59:00"
+  },
+  {
+    "_id": "A202",
+    "title": "Flow Analysis",
+    "course": "RS102",
+    "points": 80,
+    "availableDate": "2024-05-25T00:00:00",
+    "dueDate": "2024-06-01T23:59:00"
+  },
+  {
+    "_id": "A203",
+    "title": "Heating Analysis",
+    "course": "RS102",
+    "points": 90,
+    "availableDate": "2024-06-05T00:00:00",
+    "dueDate": "2024-06-12T23:59:00"
+  },
+  {
+    "_id": "A301",
+    "title": "Structural Design Task",
+    "course": "RS103",
+    "points": 120,
+    "availableDate": "2024-05-15T00:00:00",
+    "dueDate": "2024-05-29T23:59:00"
+  },
+  {
+    "_id": "A302",
+    "title": "Orbital Calculations",
+    "course": "RS103",
+    "points": 85,
+    "availableDate": "2024-06-03T00:00:00",
+    "dueDate": "2024-06-10T23:59:00"
+  },
+  {
+    "_id": "A303",
+    "title": "Systems Engineering Exam",
+    "course": "RS103",
+    "points": 200,
+    "availableDate": "2024-06-08T00:00:00",
+    "dueDate": "2024-06-15T23:59:00"
+  }
+]
