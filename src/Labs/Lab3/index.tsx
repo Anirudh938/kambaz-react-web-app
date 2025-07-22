@@ -30,6 +30,7 @@ import Add from "./Add.tsx";
 import Square from "./Square.tsx";
 import Highlight from "./Highlight";
 import PathParameters from "./PathParameters.tsx";
+import FindIndex from "./FindIndex.tsx";
 
 export default function Lab3() {
         console.log('Hello World!');
@@ -53,6 +54,7 @@ export default function Lab3() {
                 <ForLoops/>
                 <MapFunction/>
                 <FindFunction/>
+                <FindIndex/>
                 <FilterFunction/>
                 <JsonStringify/>
                 <House/>
