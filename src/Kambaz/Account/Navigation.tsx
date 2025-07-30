@@ -1,10 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";;
 
 export default function AccountNavigation() {
-    const { currentUser } = useSelector((state: any) => state.accountReducer);
-    console.log(currentUser.role)
     return (
         <div id="wd-account-navigation" className="wd list-group fs-5 rounded-0">
             <Link
