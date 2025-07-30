@@ -8,12 +8,15 @@ import { MdAssignment } from 'react-icons/md';
 import AssignmentControls from "./AssignmentControls.tsx";
 import "./style.css";
 import { MdArrowDropDown } from "react-icons/md";
-import {useParams} from "react-router-dom";
-import * as db from "../../Database";
+import {Link, useParams} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {deleteAssignment} from "./reducer.ts";
 
 export default function Assignments() {
     const { cid } = useParams();
-    const assignments = db.assignments;
+    const { assignments } = useSelector((state : any) => state.assignmentsReducer)
+    const isFaculty = useSelector((state: any) => state.accountReducer)?.role === "FACULTY";
+    const dispatch = useDispatch();
     const formatDate = (dateString: string) => {
         const date = new Date(dateString);
         const month = date.toLocaleString('default', { month: 'long' });
@@ -48,35 +51,41 @@ export default function Assignments() {
                     </InputGroup>
                 </div>
 
-                <div>
-                    <Button
-                        id="wd-add-assignment-group"
-                        variant="secondary"
-                        size="lg"
-                        className="me-2">
-                        <FaPlus className="me-2"/>
-                        Group
-                    </Button>
-                    <Button
-                        id="wd-add-assignment"
-                        variant="danger"
-                        size="lg">
-                        <FaPlus className="me-2"/>
-                        Assignment
-                    </Button>
-                </div>
+                {isFaculty && (
+                    <div>
+                        <Button
+                            id="wd-add-assignment-group"
+                            variant="secondary"
+                            size="lg"
+                            className="me-2">
+                            <FaPlus className="me-2"/>
+                            Group
+                        </Button>
+                        <Button
+                            as={Link as any}
+                            to={`/Kambaz/Courses/${cid}/Assignments/create`}
+                            id="wd-add-assignment"
+                            variant="danger"
+                            size="lg">
+                            <FaPlus className="me-2"/>
+                            Assignment
+                        </Button>
+                    </div>
+                )}
             </div>
 
 
             <ListGroup className="rounded-0" id="wd-modules">
                 <ListGroup.Item className="wd-module p-0 mb-5 fs-5 border-gray">
                     <div className="wd-title p-3 ps-2 bg-secondary">
-                        <BsGripVertical className="me-2 fs-3" />
-                        <MdArrowDropDown className="fs-3" />
+                        <BsGripVertical className="me-2 fs-3"/>
+                        <MdArrowDropDown className="fs-3"/>
                         Assignments
                         <div className="float-end">
                             <Button className="btn btn-outline-secondary btn-secondary rounded-4">40% of Total</Button>
-                            <Button id="wd-add-assignment" className="btn btn-outline-secondary btn-secondary rounded-4"><BsPlus className="fs-4"/></Button>
+                            <Button id="wd-add-assignment"
+                                    className="btn btn-outline-secondary btn-secondary rounded-4"><BsPlus
+                                className="fs-4"/></Button>
                             <IoEllipsisVertical id="wd-assignemnt-controls" className="fs-4" />
                         </div>
                     </div>
@@ -93,7 +102,7 @@ export default function Assignments() {
                                         <Col sm={9} className="d-flex justify-content-center">
                                             <div className="d-flex flex-column">
                                                 <a href={`#/Kambaz/Courses/${cid}/Assignments/${assignment._id}`}>
-                                                    {assignment._id}
+                                                    {assignment.title}
                                                 </a>
                                                 <div className="wd-assignment-details">
                                                     <span className="wd-fg-color-red"> Multiple Modules </span> | <strong>Not
@@ -103,7 +112,9 @@ export default function Assignments() {
                                             </div>
                                         </Col>
                                         <Col sm={2} className="d-flex justify-content-center">
-                                            <AssignmentControls/>
+                                            <AssignmentControls assignmentId={assignment._id} isFaculty={isFaculty} deleteAssignment={(assignmentId) => {
+                                                dispatch(deleteAssignment(assignmentId))
+                                            }}/>
                                         </Col>
                                     </Row>
                                 </ListGroup.Item>

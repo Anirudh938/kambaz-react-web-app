@@ -1,71 +1,71 @@
 [
   {
-    "_id": "A101",
-    "title": "Propulsion Assignment",
+    "_id": "8bfabf1e-5ace-47b0-8942-e2677aecb571",
+    "title": "A101",
     "course": "RS101",
     "points": 100,
     "availableDate": "2024-05-13T00:00:00",
     "dueDate": "2024-05-20T23:59:00"
   },
   {
-    "_id": "A102",
-    "title": "Combustion Analysis",
+    "_id": "d3af4250-59db-4d7d-a15c-53f911be12a2",
+    "title": "A102",
     "course": "RS101",
     "points": 75,
     "availableDate": "2024-05-20T00:00:00",
     "dueDate": "2024-05-27T23:59:00"
   },
   {
-    "_id": "A103",
-    "title": "Nozzle Design Project",
+    "_id": "090866da-3d5a-4e2c-9805-03146e9d7191",
+    "title": "A103",
     "course": "RS101",
     "points": 150,
     "availableDate": "2024-06-01T00:00:00",
     "dueDate": "2024-06-15T23:59:00"
   },
   {
-    "_id": "A201",
-    "title": "Aerodynamics Quiz",
+    "_id": "e3f6d1da-8223-4071-b72e-79c31651c046",
+    "title": "A201",
     "course": "RS102",
     "points": 50,
     "availableDate": "2024-05-10T00:00:00",
     "dueDate": "2024-05-17T23:59:00"
   },
   {
-    "_id": "A202",
-    "title": "Flow Analysis",
+    "_id": "8230221e-2f80-41bb-96f6-fe1cd2eb0940",
+    "title": "A202",
     "course": "RS102",
     "points": 80,
     "availableDate": "2024-05-25T00:00:00",
     "dueDate": "2024-06-01T23:59:00"
   },
   {
-    "_id": "A203",
-    "title": "Heating Analysis",
+    "_id": "5f9d92bd-9ac9-43f7-a0b2-374198a78658",
+    "title": "A203",
     "course": "RS102",
     "points": 90,
     "availableDate": "2024-06-05T00:00:00",
     "dueDate": "2024-06-12T23:59:00"
   },
   {
-    "_id": "A301",
-    "title": "Structural Design Task",
+    "_id": "5fa55203-9308-4f3f-be8d-2fe7cf010988",
+    "title": "A301",
     "course": "RS103",
     "points": 120,
     "availableDate": "2024-05-15T00:00:00",
     "dueDate": "2024-05-29T23:59:00"
   },
   {
-    "_id": "A302",
-    "title": "Orbital Calculations",
+    "_id": "25baab99-a6dc-47bb-89a1-2edbdd9cfb86",
+    "title": "A302",
     "course": "RS103",
     "points": 85,
     "availableDate": "2024-06-03T00:00:00",
     "dueDate": "2024-06-10T23:59:00"
   },
   {
-    "_id": "A303",
-    "title": "Systems Engineering Exam",
+    "_id": "7ceb7841-877f-4840-a487-33e3cfb1ce18",
+    "title": "A303",
     "course": "RS103",
     "points": 200,
     "availableDate": "2024-06-08T00:00:00",

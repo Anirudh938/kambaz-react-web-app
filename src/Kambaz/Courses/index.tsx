@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {Route, Routes} from "react-router";
 import CourseNavigation from "./Navigation.tsx";
 import Modules from "./Modules";
@@ -6,13 +7,14 @@ import Assignments from "./Assignments";
 import AssignmentEditor from "./Assignments/Editor.tsx";
 import {FaAlignJustify} from "react-icons/fa";
 import PeopleTable from "./People/Table.tsx";
-import { courses } from "../Database";
 import {useLocation, useParams} from "react-router-dom";
+import {useSelector} from "react-redux";
 
 export default function Courses() {
     const { cid } = useParams();
     const { pathname } = useLocation();
-    const course = courses.find((course) => course._id === cid);
+    const {courses} = useSelector((state: any) => state.coursesReducer);
+    const course = courses.find((course: any) => course._id === cid);
     return (
         <div id="wd-courses">
             <h2 className="text-danger">
@@ -30,6 +32,7 @@ export default function Courses() {
                             <Route path="Modules" element={<Modules />} />
                             <Route path="Assignments" element={<Assignments />} />
                             <Route path="Assignments/:aid" element={<AssignmentEditor />} />
+                            <Route path="Assignments/create" element={<AssignmentEditor />} />
                             <Route path="Zoom" element={<h1>Zoom</h1>} />
                             <Route path="Quizzes" element={<h1>Quizzes</h1>} />
                             <Route path="Piazza" element={<h1>Piazza</h1>} />
