@@ -15,7 +15,8 @@ import {deleteAssignment} from "./reducer.ts";
 export default function Assignments() {
     const { cid } = useParams();
     const { assignments } = useSelector((state : any) => state.assignmentsReducer)
-    const isFaculty = useSelector((state: any) => state.accountReducer)?.role === "FACULTY";
+    const { currentUser } = useSelector((state: any) => state.accountReducer);
+    const isFaculty = currentUser?.role === "FACULTY";
     const dispatch = useDispatch();
     const formatDate = (dateString: string) => {
         const date = new Date(dateString);
@@ -101,9 +102,13 @@ export default function Assignments() {
                                         </Col>
                                         <Col sm={9} className="d-flex justify-content-center">
                                             <div className="d-flex flex-column">
-                                                <a href={`#/Kambaz/Courses/${cid}/Assignments/${assignment._id}`}>
-                                                    {assignment.title}
-                                                </a>
+                                                {isFaculty ? (
+                                                    <a href={`#/Kambaz/Courses/${cid}/Assignments/${assignment._id}`}>
+                                                        {assignment.title}
+                                                    </a>
+                                                ) : (
+                                                    assignment.title
+                                                )}
                                                 <div className="wd-assignment-details">
                                                     <span className="wd-fg-color-red"> Multiple Modules </span> | <strong>Not
                                                     available until {formatDate(assignment.availableDate)}</strong> |

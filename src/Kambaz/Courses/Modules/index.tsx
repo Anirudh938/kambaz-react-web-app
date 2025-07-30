@@ -14,7 +14,8 @@ export default function Modules() {
     const { cid } = useParams();
     const [moduleName, setModuleName] = useState("");
     const { modules } = useSelector((state: any) => state.modulesReducer);
-    const isFaculty = useSelector((state: any) => state.accountReducer)?.role === "FACULTY";
+    const { currentUser } = useSelector((state: any) => state.accountReducer);
+    const isFaculty = currentUser?.role === "FACULTY";
     const dispatch = useDispatch();
 
     return (
@@ -54,6 +55,7 @@ export default function Modules() {
                                                  }}
                                                  defaultValue={module.name} />
                                 )}
+                                {isFaculty ? "facult" : "not faculty"}
                                 {isFaculty && (
                                     <ModuleControlButtons moduleId={module._id}
                                                           deleteModule={(moduleId) => {
