@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Link } from "react-router-dom";;
+import { Link } from "react-router-dom";
 
 export default function AccountNavigation() {
     return (
