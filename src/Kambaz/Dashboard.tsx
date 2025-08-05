@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Link } from "react-router-dom";
 import {Button, Card, Col, FormControl, Row} from "react-bootstrap";
-import {useDispatch, useSelector} from "react-redux";
+import { useSelector} from "react-redux";
 import {useState} from "react";
 
 export default function Dashboard({courses, allCourses, course, setCourse, addNewCourse, deleteCourse, updateCourse, enroll, unEnroll}: {
