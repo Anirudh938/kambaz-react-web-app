@@ -18,7 +18,6 @@ export default function Dashboard({courses, allCourses, course, setCourse, addNe
     const [showAllCourses, setShowAllCourses] = useState<boolean>(false);
     const { currentUser } = useSelector((state: any) => state.accountReducer);
     const isFaculty = currentUser?.role === "FACULTY";
-    const dispatch = useDispatch();
 
     const handleToggling = (status: boolean) => {
         setShowAllCourses(status);
