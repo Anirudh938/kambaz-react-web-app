@@ -11,12 +11,14 @@ import Session from "./Account/session.tsx";
 import * as userClient from "./Account/client";
 import * as courseClient from "./Courses/client"
 import {useEffect, useState} from "react";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {addCourse, setInitialCourses} from "./Courses/reducer.ts";
 
 export default function Kambaz() {
     const [courses, setCourses] = useState<any[]>([]);
     const { currentUser } = useSelector((state: any) => state.accountReducer);
     const [allCourses, setAllCourses] = useState<any[]>([]);
+    const dispatch = useDispatch();
     const defaultCourse = {
         name: "New Course", number: "New Number",
         startDate: "2023-09-10", endDate: "2023-12-15", description: "New Description",
@@ -27,6 +29,7 @@ export default function Kambaz() {
         try {
             const courses = await userClient.findCoursesForUser(currentUser._id)  ;
             setCourses(courses);
+            dispatch(setInitialCourses(courses))
         } catch (error) {
             console.error(error);
         }
@@ -51,6 +54,7 @@ export default function Kambaz() {
         setCourses([ ...courses, newCourse ]);
         setAllCourses([...allCourses, newCourse]);
         setCourse(defaultCourse);
+        dispatch(addCourse(newCourse))
     };
 
     const deleteCourse = async (courseId: string) => {
@@ -77,6 +81,7 @@ export default function Kambaz() {
         await userClient.enrollIntoCourse(currentUser._id, courseId);
         const course = allCourses.find((course: any) => course._id === courseId);
         setCourses([...courses, course])
+        dispatch(addCourse(course))
     }
 
 
