@@ -6,7 +6,7 @@ export default function ProtectedRoute({children, requireEnrollment = false}: { 
 }) {
     const { currentUser } = useSelector((state: any) => state.accountReducer);
     const { cid } = useParams();
-    const { enrollments } = useSelector((state: any)=>state.enrollmentsReducer);
+    const { courses } = useSelector((state: any) => state.coursesReducer);
 
     if (!currentUser) {
         return <Navigate to="/Kambaz/Account/Signin" />;
