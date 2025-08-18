@@ -13,10 +13,9 @@ export default function ProtectedRoute({children, requireEnrollment = false}: { 
     }
 
     if (requireEnrollment && cid) {
-        const isEnrolled = enrollments.some(
-            (enrollment: any) =>
-                enrollment.user === currentUser._id &&
-                enrollment.course === cid
+        const isEnrolled = courses.some(
+            (course: any) =>
+                course._id === cid
         );
 
         if (!isEnrolled) {
